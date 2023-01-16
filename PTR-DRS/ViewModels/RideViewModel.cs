@@ -26,9 +26,6 @@ namespace PTR_DRS.ViewModels
         [ObservableProperty]
         List<string> groups;
 
-        [ObservableProperty]
-        string selectedGroup;
-
         public RideViewModel(RideRepository rideRepository)
         {
             Title = "Rit aanmaken";

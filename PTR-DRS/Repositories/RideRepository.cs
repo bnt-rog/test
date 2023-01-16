@@ -34,7 +34,6 @@ namespace PTR_DRS.Repositories
                 try
                 {
                     ride.Id = Guid.NewGuid();
-                    ride.Date = DateTime.Now;
                     string json = JsonConvert.SerializeObject(ride);
                     StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
                     await client.PostAsync(url, content);

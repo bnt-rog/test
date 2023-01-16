@@ -11,7 +11,7 @@ namespace PTR_DRS.Models
         public Guid Id { get; set; }
         public string Name { get; set; }
         public DateTime Date { get; set; }
-        public int KM { get; set; }
+        public int? KM { get; set; }
         public string Group { get; set; }
     }
 }
