@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:PTR_DRS.Models"
+             xmlns:viewmodel="clr-namespace:PTR_DRS.ViewModels"
+             x:DataType="viewmodel:RideViewModel"
+             Title="{Binding Title}"
+             x:Class="PTR_DRS.Views.RidePage">
+    <VerticalStackLayout Spacing="20" Padding="20">
+        <StackLayout Margin="10">
+            <Label Text="Name"/>
+            <Grid>
+                <Frame HeightRequest="80">
+                    <Entry Text="{Binding Ride.Name ,Mode=TwoWay}"/>
+                </Frame>
+            </Grid>
+            <Label Text="KM"/>
+            <Grid>
+                <Frame HeightRequest="80">
+                    <Entry Text="{Binding Ride.KM ,Mode=TwoWay}"/>
+                </Frame>
+            </Grid>
+            <Label Text="Group"/>
+            <Grid>
+                <Frame HeightRequest="80">
+                    <Entry Text="{Binding Ride.Group ,Mode=TwoWay}"/>
+                </Frame>
+            </Grid>
+        </StackLayout>
+        <Button Text="Rit aanmaken" Command="{Binding Path=AddRideCommand}"/>
+    </VerticalStackLayout>
+</ContentPage>

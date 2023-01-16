@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:PTR_DRS.Models"
+             xmlns:viewmodel="clr-namespace:PTR_DRS.ViewModels"
+             x:DataType="viewmodel:BaseViewModel"
+             x:Class="PTR_DRS.Views.MainPage"
+             Title="{Binding Title}">
+
+    <VerticalStackLayout Spacing="20" Padding="20">
+        <Image Source="puiten_logo.jpg" HeightRequest="200" HorizontalOptions="Center" />
+        <Button Text="Rit aanmaken"
+                Command="{Binding GoRidePageCommand}"
+                Margin="8"/>
+    </VerticalStackLayout>
+
+</ContentPage>

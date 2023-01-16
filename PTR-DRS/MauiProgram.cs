@@ -1,4 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
+using PTR_DRS.Repositories;
+using PTR_DRS.ViewModels;
+using PTR_DRS.Views;
 
 namespace PTR_DRS;
 
@@ -15,10 +18,17 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
 
-#if DEBUG
-		builder.Logging.AddDebug();
-#endif
+        builder.Services.AddSingleton<RideRepository>();
+        builder.Services.AddSingleton<RiderRepository>();
 
-		return builder.Build();
+        builder.Services.AddSingleton<BaseViewModel>();
+        builder.Services.AddSingleton<RideViewModel>();
+        builder.Services.AddSingleton<RiderViewModel>();
+
+        builder.Services.AddSingleton<MainPage>();
+        builder.Services.AddSingleton<RidePage>();
+        builder.Services.AddSingleton<RiderPage>();
+
+        return builder.Build();
 	}
 }
