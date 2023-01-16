@@ -7,7 +7,7 @@
              x:Class="PTR_DRS.Views.MainPage"
              Title="{Binding Title}">
 
-    <VerticalStackLayout Spacing="20" Padding="20">
+    <VerticalStackLayout Spacing="10" Padding="10">
         <Image Source="puiten_logo.jpg" HeightRequest="200" HorizontalOptions="Center" />
         <Button Text="Rit aanmaken"
                 Command="{Binding GoRidePageCommand}"

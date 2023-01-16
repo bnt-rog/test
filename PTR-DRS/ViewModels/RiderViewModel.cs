@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Maui.Core.Extensions;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Maui.Controls;
 using PTR_DRS.Models;
@@ -28,6 +29,9 @@ namespace PTR_DRS.ViewModels
         [ObservableProperty]
         List<Rider> selectedRiders;
 
+        [ObservableProperty]
+        bool sortABCState;
+
         public RiderViewModel(RiderRepository riderRepository)
         {
             Title = "Renners toevoegen";
@@ -39,7 +43,23 @@ namespace PTR_DRS.ViewModels
         public async void AddRiderRide(object parameter)
         {
             RiderRepository.InsertRiderRide(SelectedRiders, Ride);
-            await Shell.Current.GoToAsync($"{nameof(MainPage)}");
+            await Shell.Current.GoToAsync($"../..");
+        }
+
+        [ICommand]
+        public async void SortABC(object parameter)
+        {
+            if (!sortABCState)
+                Riders = Riders.OrderBy(r => r.LastName).ToObservableCollection();
+            else
+                Riders = Riders.OrderByDescending(r => r.LastName).ToObservableCollection();
+            sortABCState = !sortABCState;
+        }
+
+        [ICommand]
+        public async void SortGroup(object parameter)
+        {
+
         }
 
         public Command SelectedTagChangedCommand

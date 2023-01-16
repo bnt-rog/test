@@ -35,6 +35,7 @@ public static class MauiProgram
         builder.Services.AddSingleton<MainPage>();
         builder.Services.AddSingleton<RidePage>();
         builder.Services.AddSingleton<RiderPage>();
+        builder.Services.AddSingleton<RankingPage>();
 
         return builder.Build();
 	}

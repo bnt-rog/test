@@ -48,14 +48,13 @@ namespace PTR_DRS.Repositories
         {
             using (HttpClient client = await PTRDRSHttpClient.GetClient())
             {
-                var url = client.BaseAddress + "rider";
                 if (selectedRiders != null)
                 {
                     foreach (Rider rider in selectedRiders)
                     {
                         if (rider != null)
                         {
-                            url += $"?id_rider={rider.Id}&id_ride={ride.Id}";
+                            var url = client.BaseAddress + "rider" + $"?id_rider={rider.Id}&id_ride={ride.Id}";
                             string json = JsonConvert.SerializeObject(rider);
                             StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
                             await client.PutAsync(url, content);

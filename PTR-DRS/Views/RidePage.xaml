@@ -7,7 +7,7 @@
              x:DataType="viewmodel:RideViewModel"
              Title="{Binding Title}"
              x:Class="PTR_DRS.Views.RidePage">
-    <VerticalStackLayout Spacing="20" Padding="20">
+    <VerticalStackLayout Spacing="10" Padding="10">
         <StackLayout Margin="10">
             <Label Text="Rit"/>
             <Grid>
