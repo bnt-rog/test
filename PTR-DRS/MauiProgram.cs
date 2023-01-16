@@ -1,7 +1,9 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using CommunityToolkit.Maui;
+using Microsoft.Extensions.Logging;
 using PTR_DRS.Repositories;
 using PTR_DRS.ViewModels;
 using PTR_DRS.Views;
+using UraniumUI;
 
 namespace PTR_DRS;
 
@@ -16,7 +18,12 @@ public static class MauiProgram
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-			});
+			})
+            .ConfigureMauiHandlers(handlers =>
+            {
+                handlers.AddUraniumUIHandlers();
+            })
+            .UseMauiCommunityToolkit();
 
         builder.Services.AddSingleton<RideRepository>();
         builder.Services.AddSingleton<RiderRepository>();

@@ -3,28 +3,27 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:model="clr-namespace:PTR_DRS.Models"
              xmlns:viewmodel="clr-namespace:PTR_DRS.ViewModels"
+             xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
              x:DataType="viewmodel:RideViewModel"
              Title="{Binding Title}"
              x:Class="PTR_DRS.Views.RidePage">
     <VerticalStackLayout Spacing="20" Padding="20">
         <StackLayout Margin="10">
-            <Label Text="Name"/>
+            <Label Text="Rit"/>
             <Grid>
-                <Frame HeightRequest="80">
-                    <Entry Text="{Binding Ride.Name ,Mode=TwoWay}"/>
-                </Frame>
+                <material:TextField Text="{Binding Ride.Name ,Mode=TwoWay}"/>
             </Grid>
-            <Label Text="KM"/>
+            <Label Text="KM" Padding="0,20,0,0"/>
             <Grid>
-                <Frame HeightRequest="80">
-                    <Entry Text="{Binding Ride.KM ,Mode=TwoWay}"/>
-                </Frame>
+                <material:TextField Text="{Binding Ride.KM ,Mode=TwoWay}"/>
             </Grid>
-            <Label Text="Group"/>
+            <Label Text="Groep" Padding="0,20,0,0"/>
             <Grid>
-                <Frame HeightRequest="80">
-                    <Entry Text="{Binding Ride.Group ,Mode=TwoWay}"/>
-                </Frame>
+                <material:PickerField ItemsSource="{Binding Groups}" SelectedItem="{Binding Ride.Group}"/>
+            </Grid>
+            <Label Text="Datum" Padding="0,20,0,0"/>
+            <Grid>
+                <material:DatePickerField Date="{Binding Ride.Date}" HeightRequest="80"/>
             </Grid>
         </StackLayout>
         <Button Text="Rit aanmaken" Command="{Binding Path=AddRideCommand}"/>

@@ -23,11 +23,18 @@ namespace PTR_DRS.ViewModels
         [ObservableProperty]
         List<Ride> rides;
 
+        [ObservableProperty]
+        List<string> groups;
+
+        [ObservableProperty]
+        string selectedGroup;
+
         public RideViewModel(RideRepository rideRepository)
         {
             Title = "Rit aanmaken";
             RideRepository = rideRepository;
-            Ride = new Ride();
+            Ride = new Ride() { Date = DateTime.Now, KM = null };
+            GetGroups();
         }
 
         [ICommand]
@@ -36,6 +43,7 @@ namespace PTR_DRS.ViewModels
             Ride ride = new Ride();
             ride.Name = Ride.Name;
             ride.KM = Ride.KM;
+            ride.Date = Ride.Date;
             ride.Group = Ride.Group;
 
             RideRepository.InsertRide(ride);
@@ -47,28 +55,20 @@ namespace PTR_DRS.ViewModels
                 });
         }
 
-        public async void GetRides()
+        public async void GetGroups()
         {
             if (IsBusy)
                 return;
 
             try
             {
-                IsBusy = true;
-                List<Ride> rides = await RideRepository.GetRides();
-
-                if (Rides.Count != 0)
-                    Rides.Clear();
-
-                foreach (var ride in rides)
-                {
-                    Rides.Add(ride);
-                }
+                string[] groupsLetters = { "A", "B", "C", "D" };
+                Groups = new List<string>(groupsLetters);
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex);
-                await Shell.Current.DisplayAlert("Error", "GetRiders", "OK");
+                await Shell.Current.DisplayAlert("Error", "GetGroups", "OK");
             }
             finally
             {
