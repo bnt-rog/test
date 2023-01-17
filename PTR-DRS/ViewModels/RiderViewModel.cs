@@ -87,6 +87,12 @@ namespace PTR_DRS.ViewModels
             sortGroupState = !sortGroupState;
         }
 
+        [ICommand]
+        public void SortSearch(object parameter)
+        {
+            
+        }
+
         public Command SelectedTagChangedCommand
         {
             get
@@ -102,6 +108,7 @@ namespace PTR_DRS.ViewModels
         #endregion
 
         #region Functions
+
         public async void GetRiders()
         {
             if (IsBusy)

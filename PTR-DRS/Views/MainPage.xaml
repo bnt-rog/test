@@ -6,7 +6,6 @@
              x:DataType="viewmodel:BaseViewModel"
              x:Class="PTR_DRS.Views.MainPage"
              Title="{Binding Title}">
-
     <VerticalStackLayout Spacing="10" Padding="10">
         <Image Source="puiten_logo.jpg" HeightRequest="200" HorizontalOptions="Center" />
         <Button Text="Rit aanmaken"

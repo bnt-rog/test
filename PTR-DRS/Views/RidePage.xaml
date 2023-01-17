@@ -23,7 +23,7 @@
             </Grid>
             <Label Text="Datum" Padding="0,20,0,0"/>
             <Grid>
-                <material:DatePickerField Date="{Binding Ride.Date}" HeightRequest="80"/>
+                <material:DatePickerField Date="{Binding Ride.Date}" HeightRequest="80" Format="dd/MM/yyyy"/>
             </Grid>
         </StackLayout>
         <Button Text="Rit aanmaken" Command="{Binding Path=AddRideCommand}"/>

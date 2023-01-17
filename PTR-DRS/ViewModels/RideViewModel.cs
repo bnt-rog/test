@@ -53,7 +53,7 @@ namespace PTR_DRS.ViewModels
             ride.Date = Ride.Date;
             ride.Group = Ride.Group;
 
-            //RideRepository.InsertRide(ride);
+            RideRepository.InsertRide(ride);
 
             await Shell.Current.GoToAsync($"{nameof(RiderPage)}",
                 new Dictionary<string, object>

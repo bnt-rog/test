@@ -31,6 +31,7 @@ public static class MauiProgram
         builder.Services.AddSingleton<BaseViewModel>();
         builder.Services.AddSingleton<RideViewModel>();
         builder.Services.AddSingleton<RiderViewModel>();
+        builder.Services.AddSingleton<RankingViewModel>();
 
         builder.Services.AddSingleton<MainPage>();
         builder.Services.AddSingleton<RidePage>();
