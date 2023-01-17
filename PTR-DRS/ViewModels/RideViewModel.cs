@@ -15,7 +15,13 @@ namespace PTR_DRS.ViewModels
 {
     public partial class RideViewModel : BaseViewModel
     {
+        #region Variables
+
         private readonly RideRepository RideRepository;
+
+        #endregion
+
+        #region Properties
 
         [ObservableProperty]
         Ride ride;
@@ -26,6 +32,8 @@ namespace PTR_DRS.ViewModels
         [ObservableProperty]
         List<string> groups;
 
+        #endregion
+
         public RideViewModel(RideRepository rideRepository)
         {
             Title = "Rit aanmaken";
@@ -33,6 +41,8 @@ namespace PTR_DRS.ViewModels
             Ride = new Ride() { Date = DateTime.Now, KM = null };
             GetGroups();
         }
+
+        #region Commands
 
         [ICommand]
         public async void AddRide(object parameter)
@@ -52,6 +62,10 @@ namespace PTR_DRS.ViewModels
                 });
         }
 
+        #endregion
+
+        #region Functions
+        
         public async void GetGroups()
         {
             if (IsBusy)
@@ -72,5 +86,7 @@ namespace PTR_DRS.ViewModels
                 IsBusy = false;
             }
         }
+
+        #endregion
     }
 }

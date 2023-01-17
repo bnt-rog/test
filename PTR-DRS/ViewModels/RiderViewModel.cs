@@ -18,7 +18,13 @@ namespace PTR_DRS.ViewModels
     [QueryProperty(nameof(Ride), nameof(Ride))]
     public partial class RiderViewModel : BaseViewModel
     {
+        #region Variables
+
         private readonly RiderRepository RiderRepository;
+
+        #endregion
+
+        #region Properties
 
         [ObservableProperty]
         ObservableCollection<Rider> riders = new();
@@ -32,12 +38,19 @@ namespace PTR_DRS.ViewModels
         [ObservableProperty]
         bool sortABCState;
 
+        [ObservableProperty]
+        bool sortGroupState;
+
+        #endregion
+
         public RiderViewModel(RiderRepository riderRepository)
         {
             Title = "Renners toevoegen";
             RiderRepository = riderRepository;
             GetRiders();
         }
+
+        #region Commands
 
         [ICommand]
         public async void AddRiderRide(object parameter)
@@ -47,19 +60,31 @@ namespace PTR_DRS.ViewModels
         }
 
         [ICommand]
-        public async void SortABC(object parameter)
+        public void SortABC(object parameter)
         {
             if (!sortABCState)
                 Riders = Riders.OrderBy(r => r.LastName).ToObservableCollection();
             else
-                Riders = Riders.OrderByDescending(r => r.LastName).ToObservableCollection();
+                Riders = Riders.Reverse().ToObservableCollection();
             sortABCState = !sortABCState;
         }
 
         [ICommand]
-        public async void SortGroup(object parameter)
+        public void SortGroup(object parameter)
         {
-
+            var group = Ride.Group;
+            if (!sortGroupState)
+            {
+                var query = riders.Select(r => new { Rider = r, Rides = r.Rides.Where(ride => ride.Group == group) })
+                    .OrderByDescending(r => r.Rides.Count())
+                    .ToDictionary(r => r.Rider, r => r.Rides.Count());
+                Riders = new ObservableCollection<Rider>(query.Keys);
+            }
+            else
+            {
+                Riders = Riders.Reverse().ToObservableCollection();
+            }
+            sortGroupState = !sortGroupState;
         }
 
         public Command SelectedTagChangedCommand
@@ -74,6 +99,9 @@ namespace PTR_DRS.ViewModels
             }
         }
 
+        #endregion
+
+        #region Functions
         public async void GetRiders()
         {
             if (IsBusy)
@@ -102,5 +130,7 @@ namespace PTR_DRS.ViewModels
                 IsBusy = false;
             }
         }
+
+        #endregion
     }
 }

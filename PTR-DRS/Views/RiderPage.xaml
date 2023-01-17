@@ -36,11 +36,11 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
-                            <Label Text="{Binding FirstName}" 
+                            <Label Text="{Binding LastName}" 
                                        Grid.Column="0"/>
                             <Label Text=" " 
                                        Grid.Column="1"/>
-                            <Label Text="{Binding LastName}" 
+                            <Label Text="{Binding FirstName}" 
                                        Grid.Column="2"/>
                         </Grid>
                     </Border>
