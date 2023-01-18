@@ -4,7 +4,7 @@ namespace PTR_DRS.Views;
 
 public partial class RankingPage : ContentPage
 {
-	public RankingPage(RiderViewModel viewModel)
+	public RankingPage(RankingViewModel viewModel)
 	{
 		InitializeComponent();
         BindingContext = viewModel;

@@ -10,35 +10,46 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Button Text="A" Command="{Binding Path=GroupACommand}" Grid.Column="0" Margin="5,0,5,0"/>
-            <Button Text="B" Command="{Binding Path=GroupBCommand}" Grid.Column="1" Margin="5,0,5,0"/>
-            <Button Text="C" Command="{Binding Path=GroupCCommand}" Grid.Column="2" Margin="5,0,5,0"/>
-            <Button Text="D" Command="{Binding Path=GroupDCommand}" Grid.Column="3" Margin="5,0,5,0"/>
+            <Button Text="All" Command="{Binding Path=GroupAllCommand}" Grid.Column="0" Margin="5,0,5,0"/>
+            <Button Text="A" Command="{Binding Path=GroupACommand}" Grid.Column="1" Margin="5,0,5,0"/>
+            <Button Text="B" Command="{Binding Path=GroupBCommand}" Grid.Column="2" Margin="5,0,5,0"/>
+            <Button Text="C" Command="{Binding Path=GroupCCommand}" Grid.Column="3" Margin="5,0,5,0"/>
+            <Button Text="D" Command="{Binding Path=GroupDCommand}" Grid.Column="4" Margin="5,0,5,0"/>
         </Grid>
-        <CollectionView ItemsSource="{Binding Riders}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label Text="Naam" Grid.Column="0" Margin="10,0,0,0" FontAttributes="Bold"/>
+            <Label Text="Aantal" Grid.Column="2" HorizontalTextAlignment="End" FontAttributes="Bold"/>
+            <Label Text="KM" Grid.Column="3" HorizontalTextAlignment="End" Margin="0,0,25,0" FontAttributes="Bold"/>
+        </Grid>
+        <CollectionView ItemsSource="{Binding Rankings}">
             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="model:Rider">
+                <DataTemplate x:DataType="model:Ranking">
                     <Border Stroke="gray"
                                 StrokeThickness="2"
                                 StrokeShape="RoundRectangle 10"
                                 Padding="20,10">
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <Label Text="{Binding LastName}" 
-                                       Grid.Column="0"/>
-                            <Label Text=" " 
-                                       Grid.Column="1"/>
-                            <Label Text="{Binding FirstName}" 
-                                       Grid.Column="2"/>
+                            <Label Text="{Binding Rider.LastName}" Grid.Column="0"/>
+                            <Label Text="{Binding Rider.FirstName}" Grid.Column="1"/>
+                            <Label Text="{Binding TotalRides}" Grid.Column="2" HorizontalTextAlignment="End"/>
+                            <Label Text="{Binding TotalKM}" Grid.Column="3" HorizontalTextAlignment="End"/>
                         </Grid>
                     </Border>
                 </DataTemplate>

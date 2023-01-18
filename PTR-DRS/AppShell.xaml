@@ -6,16 +6,14 @@
     xmlns:local="clr-namespace:PTR_DRS"
     Shell.FlyoutBehavior="Flyout">
 
-    <FlyoutItem>
+    <FlyoutItem Title="Home">
         <ShellContent
-            Title="Home"
             ContentTemplate="{DataTemplate local:Views.MainPage}"
             Route="MainPage" />
     </FlyoutItem>
-    
-    <FlyoutItem>
+
+    <FlyoutItem Title="Klassement">
         <ShellContent
-            Title="Ranking"
             ContentTemplate="{DataTemplate local:Views.RankingPage}"
             Route="RankingPage" />
     </FlyoutItem>

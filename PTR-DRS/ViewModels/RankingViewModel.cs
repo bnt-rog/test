@@ -27,7 +27,25 @@ namespace PTR_DRS.ViewModels
         ObservableCollection<Rider> riders = new();
 
         [ObservableProperty]
+        ObservableCollection<Ranking> rankings = new();
+
+        [ObservableProperty]
         int? totalKM;
+
+        [ObservableProperty]
+        bool sortAll;
+
+        [ObservableProperty]
+        bool sortA;
+
+        [ObservableProperty]
+        bool sortB;
+
+        [ObservableProperty]
+        bool sortC;
+
+        [ObservableProperty]
+        bool sortD;
 
         #endregion
 
@@ -41,27 +59,203 @@ namespace PTR_DRS.ViewModels
         #region Commands
 
         [ICommand]
+        public void GroupAll()
+        {
+            Rankings = GetRankings(Riders);
+
+            if (!sortAll)
+                Rankings = Rankings.OrderByDescending(r => r.TotalKM).ToObservableCollection();
+            else
+                Rankings = Rankings.Reverse().ToObservableCollection();
+            sortAll = !sortAll;
+        }
+
+        [ICommand]
         public void GroupA()
         {
+            var group = "A";
+            Rankings = GetRankings(Riders);
 
+            if (!sortA)
+            {
+                foreach (var ranking in Rankings)
+                {
+                    int? totalKM = 0;
+                    int? totalRides = 0;
+                    foreach (var ride in ranking.Rider.Rides)
+                    {
+                        if (ride.Group == group)
+                        {
+                            totalRides++;
+                            totalKM += ride.KM;
+                        }
+                    }
+                    ranking.TotalRides = totalRides;
+                    ranking.TotalKM = totalKM;
+                }
+                Rankings = Rankings.OrderByDescending(r => r.TotalKM).ToObservableCollection();
+            }
+            else
+            {
+                foreach (var ranking in Rankings)
+                {
+                    int? totalKM = 0;
+                    int? totalRides = 0;
+                    foreach (var ride in ranking.Rider.Rides)
+                    {
+                        if (ride.Group == group)
+                        {
+                            totalRides++;
+                            totalKM += ride.KM;
+                        }
+                    }
+                    ranking.TotalRides = totalRides;
+                    ranking.TotalKM = totalKM;
+                }
+                Rankings = Rankings.OrderBy(r => r.TotalKM).ToObservableCollection();
+            }
+            sortA = !sortA;
         }
 
         [ICommand]
         public void GroupB()
         {
+            var group = "B";
+            Rankings = GetRankings(Riders);
 
+            if (!sortB)
+            {
+                foreach (var ranking in Rankings)
+                {
+                    int? totalKM = 0;
+                    int? totalRides = 0;
+                    foreach (var ride in ranking.Rider.Rides)
+                    {
+                        if (ride.Group == group)
+                        {
+                            totalRides++;
+                            totalKM += ride.KM;
+                        }
+                    }
+                    ranking.TotalRides = totalRides;
+                    ranking.TotalKM = totalKM;
+                }
+                Rankings = Rankings.OrderByDescending(r => r.TotalKM).ToObservableCollection();
+            }
+            else
+            {
+                foreach (var ranking in Rankings)
+                {
+                    int? totalKM = 0;
+                    int? totalRides = 0;
+                    foreach (var ride in ranking.Rider.Rides)
+                    {
+                        if (ride.Group == group)
+                        {
+                            totalRides++;
+                            totalKM += ride.KM;
+                        }
+                    }
+                    ranking.TotalRides = totalRides;
+                    ranking.TotalKM = totalKM;
+                }
+                Rankings = Rankings.OrderBy(r => r.TotalKM).ToObservableCollection();
+            }
+            sortB = !sortB;
         }
 
         [ICommand]
         public void GroupC()
         {
+            var group = "C";
+            Rankings = GetRankings(Riders);
 
+            if (!sortC)
+            {
+                foreach (var ranking in Rankings)
+                {
+                    int? totalKM = 0;
+                    int? totalRides = 0;
+                    foreach (var ride in ranking.Rider.Rides)
+                    {
+                        if (ride.Group == group)
+                        {
+                            totalRides++;
+                            totalKM += ride.KM;
+                        }
+                    }
+                    ranking.TotalRides = totalRides;
+                    ranking.TotalKM = totalKM;
+                }
+                Rankings = Rankings.OrderByDescending(r => r.TotalKM).ToObservableCollection();
+            }
+            else
+            {
+                foreach (var ranking in Rankings)
+                {
+                    int? totalKM = 0;
+                    int? totalRides = 0;
+                    foreach (var ride in ranking.Rider.Rides)
+                    {
+                        if (ride.Group == group)
+                        {
+                            totalRides++;
+                            totalKM += ride.KM;
+                        }
+                    }
+                    ranking.TotalRides = totalRides;
+                    ranking.TotalKM = totalKM;
+                }
+                Rankings = Rankings.OrderBy(r => r.TotalKM).ToObservableCollection();
+            }
+            sortC = !sortC;
         }
 
         [ICommand]
         public void GroupD()
         {
+            var group = "D";
+            Rankings = GetRankings(Riders);
 
+            if (!sortD)
+            {
+                foreach (var ranking in Rankings)
+                {
+                    int? totalKM = 0;
+                    int? totalRides = 0;
+                    foreach (var ride in ranking.Rider.Rides)
+                    {
+                        if (ride.Group == group)
+                        {
+                            totalRides++;
+                            totalKM += ride.KM;
+                        }
+                    }
+                    ranking.TotalRides = totalRides;
+                    ranking.TotalKM = totalKM;
+                }
+                Rankings = Rankings.OrderByDescending(r => r.TotalKM).ToObservableCollection();
+            }
+            else
+            {
+                foreach (var ranking in Rankings)
+                {
+                    int? totalKM = 0;
+                    int? totalRides = 0;
+                    foreach (var ride in ranking.Rider.Rides)
+                    {
+                        if (ride.Group == group)
+                        {
+                            totalRides++;
+                            totalKM += ride.KM;
+                        }
+                    }
+                    ranking.TotalRides = totalRides;
+                    ranking.TotalKM = totalKM;
+                }
+                Rankings = Rankings.OrderByDescending(r => r.TotalKM).ToObservableCollection();
+            }
+            sortD = !sortD;
         }
 
         #endregion
@@ -83,12 +277,10 @@ namespace PTR_DRS.ViewModels
 
                 foreach (var rider in riders)
                 {
-                    foreach (var ride in rider.Rides)
-                    {
-                        TotalKM += ride.KM;
-                    }
                     Riders.Add(rider);
                 }
+
+                Rankings = GetRankings(Riders);
             }
             catch (Exception ex)
             {
@@ -99,6 +291,28 @@ namespace PTR_DRS.ViewModels
             {
                 IsBusy = false;
             }
+        }
+
+        public ObservableCollection<Ranking> GetRankings(ObservableCollection<Rider> riders)
+        {
+            var rankings = new ObservableCollection<Ranking>();
+            foreach (var rider in riders)
+            {
+                int? totalKM = 0;
+                foreach (var ride in rider.Rides)
+                {
+                    totalKM += ride.KM;
+                }
+                Ranking ranking = new Ranking()
+                {
+                    Rider = rider,
+                    TotalKM = totalKM,
+                    TotalRides = rider.Rides.Count
+                };
+                rankings.Add(ranking);
+            }
+            rankings = rankings.OrderByDescending(r => r.TotalKM).ToObservableCollection();
+            return rankings;
         }
 
         #endregion
