@@ -78,40 +78,22 @@ namespace PTR_DRS.ViewModels
 
             if (!sortA)
             {
-                foreach (var ranking in Rankings)
+                Rankings.ToList().ForEach(ranking =>
                 {
-                    int? totalKM = 0;
-                    int? totalRides = 0;
-                    foreach (var ride in ranking.Rider.Rides)
-                    {
-                        if (ride.Group == group)
-                        {
-                            totalRides++;
-                            totalKM += ride.KM;
-                        }
-                    }
-                    ranking.TotalRides = totalRides;
-                    ranking.TotalKM = totalKM;
-                }
+                    var groupRides = ranking.Rider.Rides.Where(ride => ride.Group == group);
+                    ranking.TotalRides = groupRides.Count();
+                    ranking.TotalKM = groupRides.Sum(ride => ride.KM);
+                });
                 Rankings = Rankings.OrderByDescending(r => r.TotalKM).ToObservableCollection();
             }
             else
             {
-                foreach (var ranking in Rankings)
+                Rankings.ToList().ForEach(ranking =>
                 {
-                    int? totalKM = 0;
-                    int? totalRides = 0;
-                    foreach (var ride in ranking.Rider.Rides)
-                    {
-                        if (ride.Group == group)
-                        {
-                            totalRides++;
-                            totalKM += ride.KM;
-                        }
-                    }
-                    ranking.TotalRides = totalRides;
-                    ranking.TotalKM = totalKM;
-                }
+                    var groupRides = ranking.Rider.Rides.Where(ride => ride.Group == group);
+                    ranking.TotalRides = groupRides.Count();
+                    ranking.TotalKM = groupRides.Sum(ride => ride.KM);
+                });
                 Rankings = Rankings.OrderBy(r => r.TotalKM).ToObservableCollection();
             }
             sortA = !sortA;
@@ -125,40 +107,22 @@ namespace PTR_DRS.ViewModels
 
             if (!sortB)
             {
-                foreach (var ranking in Rankings)
+                Rankings.ToList().ForEach(ranking =>
                 {
-                    int? totalKM = 0;
-                    int? totalRides = 0;
-                    foreach (var ride in ranking.Rider.Rides)
-                    {
-                        if (ride.Group == group)
-                        {
-                            totalRides++;
-                            totalKM += ride.KM;
-                        }
-                    }
-                    ranking.TotalRides = totalRides;
-                    ranking.TotalKM = totalKM;
-                }
+                    var groupRides = ranking.Rider.Rides.Where(ride => ride.Group == group);
+                    ranking.TotalRides = groupRides.Count();
+                    ranking.TotalKM = groupRides.Sum(ride => ride.KM);
+                });
                 Rankings = Rankings.OrderByDescending(r => r.TotalKM).ToObservableCollection();
             }
             else
             {
-                foreach (var ranking in Rankings)
+                Rankings.ToList().ForEach(ranking =>
                 {
-                    int? totalKM = 0;
-                    int? totalRides = 0;
-                    foreach (var ride in ranking.Rider.Rides)
-                    {
-                        if (ride.Group == group)
-                        {
-                            totalRides++;
-                            totalKM += ride.KM;
-                        }
-                    }
-                    ranking.TotalRides = totalRides;
-                    ranking.TotalKM = totalKM;
-                }
+                    var groupRides = ranking.Rider.Rides.Where(ride => ride.Group == group);
+                    ranking.TotalRides = groupRides.Count();
+                    ranking.TotalKM = groupRides.Sum(ride => ride.KM);
+                });
                 Rankings = Rankings.OrderBy(r => r.TotalKM).ToObservableCollection();
             }
             sortB = !sortB;
@@ -172,40 +136,22 @@ namespace PTR_DRS.ViewModels
 
             if (!sortC)
             {
-                foreach (var ranking in Rankings)
+                Rankings.ToList().ForEach(ranking =>
                 {
-                    int? totalKM = 0;
-                    int? totalRides = 0;
-                    foreach (var ride in ranking.Rider.Rides)
-                    {
-                        if (ride.Group == group)
-                        {
-                            totalRides++;
-                            totalKM += ride.KM;
-                        }
-                    }
-                    ranking.TotalRides = totalRides;
-                    ranking.TotalKM = totalKM;
-                }
+                    var groupRides = ranking.Rider.Rides.Where(ride => ride.Group == group);
+                    ranking.TotalRides = groupRides.Count();
+                    ranking.TotalKM = groupRides.Sum(ride => ride.KM);
+                });
                 Rankings = Rankings.OrderByDescending(r => r.TotalKM).ToObservableCollection();
             }
             else
             {
-                foreach (var ranking in Rankings)
+                Rankings.ToList().ForEach(ranking =>
                 {
-                    int? totalKM = 0;
-                    int? totalRides = 0;
-                    foreach (var ride in ranking.Rider.Rides)
-                    {
-                        if (ride.Group == group)
-                        {
-                            totalRides++;
-                            totalKM += ride.KM;
-                        }
-                    }
-                    ranking.TotalRides = totalRides;
-                    ranking.TotalKM = totalKM;
-                }
+                    var groupRides = ranking.Rider.Rides.Where(ride => ride.Group == group);
+                    ranking.TotalRides = groupRides.Count();
+                    ranking.TotalKM = groupRides.Sum(ride => ride.KM);
+                });
                 Rankings = Rankings.OrderBy(r => r.TotalKM).ToObservableCollection();
             }
             sortC = !sortC;
@@ -219,40 +165,22 @@ namespace PTR_DRS.ViewModels
 
             if (!sortD)
             {
-                foreach (var ranking in Rankings)
+                Rankings.ToList().ForEach(ranking =>
                 {
-                    int? totalKM = 0;
-                    int? totalRides = 0;
-                    foreach (var ride in ranking.Rider.Rides)
-                    {
-                        if (ride.Group == group)
-                        {
-                            totalRides++;
-                            totalKM += ride.KM;
-                        }
-                    }
-                    ranking.TotalRides = totalRides;
-                    ranking.TotalKM = totalKM;
-                }
+                    var groupRides = ranking.Rider.Rides.Where(ride => ride.Group == group);
+                    ranking.TotalRides = groupRides.Count();
+                    ranking.TotalKM = groupRides.Sum(ride => ride.KM);
+                });
                 Rankings = Rankings.OrderByDescending(r => r.TotalKM).ToObservableCollection();
             }
             else
             {
-                foreach (var ranking in Rankings)
+                Rankings.ToList().ForEach(ranking =>
                 {
-                    int? totalKM = 0;
-                    int? totalRides = 0;
-                    foreach (var ride in ranking.Rider.Rides)
-                    {
-                        if (ride.Group == group)
-                        {
-                            totalRides++;
-                            totalKM += ride.KM;
-                        }
-                    }
-                    ranking.TotalRides = totalRides;
-                    ranking.TotalKM = totalKM;
-                }
+                    var groupRides = ranking.Rider.Rides.Where(ride => ride.Group == group);
+                    ranking.TotalRides = groupRides.Count();
+                    ranking.TotalKM = groupRides.Sum(ride => ride.KM);
+                });
                 Rankings = Rankings.OrderByDescending(r => r.TotalKM).ToObservableCollection();
             }
             sortD = !sortD;
@@ -295,23 +223,15 @@ namespace PTR_DRS.ViewModels
 
         public ObservableCollection<Ranking> GetRankings(ObservableCollection<Rider> riders)
         {
-            var rankings = new ObservableCollection<Ranking>();
-            foreach (var rider in riders)
-            {
-                int? totalKM = 0;
-                foreach (var ride in rider.Rides)
-                {
-                    totalKM += ride.KM;
-                }
-                Ranking ranking = new Ranking()
+            var rankings = riders
+                .Select(rider => new Ranking
                 {
                     Rider = rider,
-                    TotalKM = totalKM,
+                    TotalKM = rider.Rides.Sum(ride => ride.KM),
                     TotalRides = rider.Rides.Count
-                };
-                rankings.Add(ranking);
-            }
-            rankings = rankings.OrderByDescending(r => r.TotalKM).ToObservableCollection();
+                })
+                .OrderByDescending(r => r.TotalKM)
+                .ToObservableCollection();
             return rankings;
         }
 
