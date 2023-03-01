@@ -9,44 +9,52 @@
     <Shell.TitleView>
         <Button Text="Renners toevoegen" Command="{Binding Path=AddRiderRideCommand}" HorizontalOptions="End" VerticalOptions="Center"/>
     </Shell.TitleView>
-    <VerticalStackLayout Spacing="10" Padding="10">
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <Button Text="A - Z" Command="{Binding Path=SortABCCommand}" Grid.Column="0" Margin="5,0,5,0"/>
-            <Button Text="Groep" Command="{Binding Path=SortGroupCommand}" Grid.Column="1" Margin="5,0,5,0"/>
-            <Button Text="Zoeken" Command="{Binding Path=SortSearchCommand}" Grid.Column="3" Margin="5,0,5,0"/>
-        </Grid>
-        <CollectionView x:Name="RidersList" 
-                            ItemsSource="{Binding Riders}"
-                            SelectionMode="Multiple"
-                            SelectionChangedCommand="{Binding SelectedTagChangedCommand}" 
-                            SelectionChangedCommandParameter="{Binding SelectedItems, Source={x:Reference RidersList}}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="model:Rider">
-                    <Border Stroke="gray"
-                                StrokeThickness="2"
-                                StrokeShape="RoundRectangle 10"
-                                Padding="20,10">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <Label Text="{Binding LastName}" 
-                                       Grid.Column="0"/>
-                            <Label Text=" " 
-                                       Grid.Column="1"/>
-                            <Label Text="{Binding FirstName}" 
-                                       Grid.Column="2"/>
-                        </Grid>
-                    </Border>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-    </VerticalStackLayout>
+    <ScrollView>
+        <VerticalStackLayout Spacing="10" Padding="10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <HorizontalStackLayout>
+                    
+                </HorizontalStackLayout>
+                <Button Text="A - Z" Command="{Binding Path=SortABCCommand}" Grid.Column="0" Margin="5,0,5,0"/>
+                <Button Text="Groep" Command="{Binding Path=SortGroupCommand}" Grid.Column="1" Margin="5,0,5,0"/>
+            </Grid>
+                <SearchBar HorizontalOptions="FillAndExpand" 
+                    VerticalOptions="Start"
+                    Placeholder="Search Property"
+                    Text="{Binding SearchTerm, Mode=TwoWay}"
+                    SearchCommand="{Binding SearchNameCommand}"/>
+            <CollectionView x:Name="RidersList" 
+                                ItemsSource="{Binding Riders}"
+                                SelectionMode="Multiple"
+                                SelectionChangedCommand="{Binding SelectedTagChangedCommand}" 
+                                SelectionChangedCommandParameter="{Binding SelectedItems, Source={x:Reference RidersList}}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Rider">
+                        <Border Stroke="gray"
+                                    StrokeThickness="2"
+                                    StrokeShape="RoundRectangle 10"
+                                    Padding="20,10">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Label Text="{Binding LastName}" 
+                                           Grid.Column="0"/>
+                                <Label Text=" " 
+                                           Grid.Column="1"/>
+                                <Label Text="{Binding FirstName}" 
+                                           Grid.Column="2"/>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

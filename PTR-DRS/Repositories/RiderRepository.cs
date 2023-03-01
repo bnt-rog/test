@@ -33,6 +33,7 @@ namespace PTR_DRS.Repositories
                 try
                 {
                     rider.Id = Guid.NewGuid();
+                    rider.Rides = new List<Ride>();
                     string json = JsonConvert.SerializeObject(rider);
                     StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
                     await client.PostAsync(url, content);

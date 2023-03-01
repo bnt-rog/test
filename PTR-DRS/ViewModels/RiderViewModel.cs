@@ -27,6 +27,9 @@ namespace PTR_DRS.ViewModels
         #region Properties
 
         [ObservableProperty]
+        ObservableCollection<Rider> allRiders = new();
+
+        [ObservableProperty]
         ObservableCollection<Rider> riders = new();
 
         [ObservableProperty]
@@ -40,6 +43,9 @@ namespace PTR_DRS.ViewModels
 
         [ObservableProperty]
         bool sortGroupState;
+
+        [ObservableProperty]
+        public string searchTerm;
 
         #endregion
 
@@ -93,6 +99,32 @@ namespace PTR_DRS.ViewModels
             
         }
 
+        [ICommand]
+        public void SearchName(object parameter)
+        {
+            List<Rider> searchRiders = new List<Rider>();
+            if (string.IsNullOrEmpty(searchTerm))
+            {
+                searchTerm = string.Empty;
+
+            }
+            else
+            {
+                searchTerm = searchTerm.ToLowerInvariant();
+                var fiteredItems = AllRiders.Where(r => r.FirstName.ToLowerInvariant().Contains(searchTerm) || r.LastName.ToLowerInvariant().Contains(searchTerm));
+
+                if (fiteredItems is not null)
+                {
+                    foreach (var item in fiteredItems)
+                    {
+                        searchRiders.Add(item);
+                    }
+                }
+
+                Riders = searchRiders.ToObservableCollection();
+            }
+        }
+
         public Command SelectedTagChangedCommand
         {
             get
@@ -126,6 +158,14 @@ namespace PTR_DRS.ViewModels
                 {
                     Riders.Add(rider);
                 }
+
+                AllRiders = Riders;
+
+                if (!sortABCState)
+                    Riders = Riders.OrderBy(r => r.LastName).ToObservableCollection();
+                else
+                    Riders = Riders.Reverse().ToObservableCollection();
+                sortABCState = !sortABCState;
             }
             catch (Exception ex)
             {
