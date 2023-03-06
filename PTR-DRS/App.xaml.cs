@@ -1,4 +1,6 @@
-﻿namespace PTR_DRS;
+﻿using Microsoft.Maui.ApplicationModel;
+
+namespace PTR_DRS;
 
 public partial class App : Application
 {
@@ -7,5 +9,6 @@ public partial class App : Application
 		InitializeComponent();
 
 		MainPage = new AppShell();
-	}
+        UserAppTheme = AppTheme.Light;
+    }
 }
