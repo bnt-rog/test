@@ -27,10 +27,10 @@ namespace PTR_DRS.ViewModels
         #region Properties
 
         [ObservableProperty]
-        ObservableCollection<Rider> allRiders = new();
+        List<Rider> allRiders = new();
 
         [ObservableProperty]
-        ObservableCollection<Rider> riders = new();
+        List<Rider> riders = new();
 
         [ObservableProperty]
         Ride ride;
@@ -68,50 +68,48 @@ namespace PTR_DRS.ViewModels
         [ICommand]
         public void SortABC(object parameter)
         {
+            IsBusy = true;
             if (!sortABCState)
-                Riders = Riders.OrderBy(r => r.LastName).ToObservableCollection();
+                Riders = Riders.OrderBy(r => r.LastName).ToList();
             else
-                Riders = Riders.Reverse().ToObservableCollection();
+                Riders.Reverse();
             sortABCState = !sortABCState;
+            IsBusy = false;
         }
 
         [ICommand]
         public void SortGroup(object parameter)
         {
+            IsBusy = true;
             var group = Ride.Group;
             if (!sortGroupState)
             {
                 var query = riders.Select(r => new { Rider = r, Rides = r.Rides.Where(ride => ride.Group == group) })
                     .OrderByDescending(r => r.Rides.Count())
                     .ToDictionary(r => r.Rider, r => r.Rides.Count());
-                Riders = new ObservableCollection<Rider>(query.Keys);
+                Riders = new List<Rider>(query.Keys);
             }
             else
             {
-                Riders = Riders.Reverse().ToObservableCollection();
+                Riders.Reverse();
             }
             sortGroupState = !sortGroupState;
-        }
-
-        [ICommand]
-        public void SortSearch(object parameter)
-        {
-            
+            IsBusy = false;
         }
 
         [ICommand]
         public void SearchName(object parameter)
         {
             List<Rider> searchRiders = new List<Rider>();
-            if (string.IsNullOrEmpty(searchTerm))
+            if (string.IsNullOrEmpty(SearchTerm))
             {
-                searchTerm = string.Empty;
-
+                SearchTerm = string.Empty;
+                Riders = AllRiders;
             }
             else
             {
-                searchTerm = searchTerm.ToLowerInvariant();
-                var fiteredItems = AllRiders.Where(r => r.FirstName.ToLowerInvariant().Contains(searchTerm) || r.LastName.ToLowerInvariant().Contains(searchTerm));
+                SearchTerm = SearchTerm.ToLowerInvariant();
+                var fiteredItems = AllRiders.Where(r => r.FirstName.ToLowerInvariant().Contains(SearchTerm) || r.LastName.ToLowerInvariant().Contains(SearchTerm));
 
                 if (fiteredItems is not null)
                 {
@@ -121,8 +119,17 @@ namespace PTR_DRS.ViewModels
                     }
                 }
 
-                Riders = searchRiders.ToObservableCollection();
+                Riders = searchRiders.ToList();
             }
+        }
+
+        [ICommand]
+        public void Clear()
+        {
+            IsBusy = true;
+            SearchTerm = string.Empty;
+            Riders = AllRiders;
+            IsBusy = false;
         }
 
         public Command SelectedTagChangedCommand
@@ -162,9 +169,9 @@ namespace PTR_DRS.ViewModels
                 AllRiders = Riders;
 
                 if (!sortABCState)
-                    Riders = Riders.OrderBy(r => r.LastName).ToObservableCollection();
+                    Riders = Riders.OrderBy(r => r.LastName).ToList();
                 else
-                    Riders = Riders.Reverse().ToObservableCollection();
+                    Riders.Reverse();
                 sortABCState = !sortABCState;
             }
             catch (Exception ex)

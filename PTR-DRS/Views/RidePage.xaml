@@ -11,19 +11,19 @@
         <StackLayout Margin="10">
             <Label Text="Rit"/>
             <Grid>
-                <material:TextField Text="{Binding Ride.Name ,Mode=TwoWay}"/>
+                <material:TextField Text="{Binding Ride.Name ,Mode=TwoWay}" TextColor="{StaticResource Gray900}"/>
             </Grid>
             <Label Text="KM" Padding="0,20,0,0"/>
             <Grid>
-                <material:TextField Text="{Binding Ride.KM ,Mode=TwoWay}"/>
+                <material:TextField Text="{Binding Ride.KM ,Mode=TwoWay}" TextColor="{StaticResource Gray900}"/>
             </Grid>
             <Label Text="Groep" Padding="0,20,0,0"/>
             <Grid>
-                <material:PickerField ItemsSource="{Binding Groups}" SelectedItem="{Binding Ride.Group}"/>
+                <material:PickerField ItemsSource="{Binding Groups}" SelectedItem="{Binding Ride.Group}" TextColor="{StaticResource Gray900}"/>
             </Grid>
             <Label Text="Datum" Padding="0,20,0,0"/>
             <Grid>
-                <material:DatePickerField Date="{Binding Ride.Date}" HeightRequest="80" Format="dd/MM/yyyy"/>
+                <material:DatePickerField Date="{Binding Ride.Date}" HeightRequest="80" Format="dd/MM/yyyy" TextColor="{StaticResource Gray900}"/>
             </Grid>
         </StackLayout>
         <Button Text="Rit aanmaken" Command="{Binding Path=AddRideCommand}"/>

@@ -7,7 +7,7 @@
              Title="{Binding Title}"
              x:Class="PTR_DRS.Views.RiderPage">
     <Shell.TitleView>
-        <Button Text="Renners toevoegen" Command="{Binding Path=AddRiderRideCommand}" HorizontalOptions="End" VerticalOptions="Center"/>
+        <Button Text="Renners toevoegen" Clicked="AddRiders" HorizontalOptions="End" VerticalOptions="Center"/>
     </Shell.TitleView>
     <ScrollView>
         <VerticalStackLayout Spacing="10" Padding="10">
@@ -19,42 +19,75 @@
                 <HorizontalStackLayout>
                     
                 </HorizontalStackLayout>
-                <Button Text="A - Z" Command="{Binding Path=SortABCCommand}" Grid.Column="0" Margin="5,0,5,0"/>
-                <Button Text="Groep" Command="{Binding Path=SortGroupCommand}" Grid.Column="1" Margin="5,0,5,0"/>
+                <Button Text="A - Z" Command="{Binding Path=SortABCCommand}" Grid.Column="0" Margin="0,0,5,0"/>
+                <Button Text="Groep" Command="{Binding Path=SortGroupCommand}" Grid.Column="1" Margin="5,0,0,0"/>
             </Grid>
-                <SearchBar HorizontalOptions="FillAndExpand" 
-                    VerticalOptions="Start"
-                    Placeholder="Search Property"
-                    Text="{Binding SearchTerm, Mode=TwoWay}"
-                    SearchCommand="{Binding SearchNameCommand}"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80*"/>
+                    <ColumnDefinition Width="20*" />
+                </Grid.ColumnDefinitions>
+                <HorizontalStackLayout>
+
+                </HorizontalStackLayout>
+                <SearchBar HorizontalOptions="Start" 
+                           VerticalOptions="Start"
+                           Placeholder="Search Property"
+                           Text="{Binding SearchTerm, Mode=TwoWay}"
+                           SearchCommand="{Binding SearchNameCommand}"
+                           Grid.Column="0"/>
+                <Button Text="Clear" HorizontalOptions="End" VerticalOptions="Center" Grid.Column="1" Command="{Binding ClearCommand}"/>
+            </Grid>
             <CollectionView x:Name="RidersList" 
-                                ItemsSource="{Binding Riders}"
-                                SelectionMode="Multiple"
-                                SelectionChangedCommand="{Binding SelectedTagChangedCommand}" 
-                                SelectionChangedCommandParameter="{Binding SelectedItems, Source={x:Reference RidersList}}">
+                    ItemsSource="{Binding Riders}"
+                    SelectionMode="Multiple"
+                    SelectionChangedCommand="{Binding SelectedTagChangedCommand}" 
+                    SelectionChangedCommandParameter="{Binding SelectedItems, Source={x:Reference RidersList}}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:Rider">
-                        <Border Stroke="gray"
-                                    StrokeThickness="2"
-                                    StrokeShape="RoundRectangle 10"
-                                    Padding="20,10">
+                        <Border x:Name="ItemBorder"
+                                Stroke="gray"
+                                StrokeThickness="2"
+                                StrokeShape="RoundRectangle 10"
+                                Padding="20">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
-                                <Label Text="{Binding LastName}" 
-                                           Grid.Column="0"/>
+                                <Label x:Name="LastNameLabel"
+                                       Text="{Binding LastName}" 
+                                       Grid.Column="0"/>
                                 <Label Text=" " 
-                                           Grid.Column="1"/>
-                                <Label Text="{Binding FirstName}" 
-                                           Grid.Column="2"/>
+                                       Grid.Column="1"/>
+                                <Label x:Name="FirstNameLabel"
+                                       Text="{Binding FirstName}" 
+                                       Grid.Column="2"/>
                             </Grid>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroupList>
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualState x:Name="Normal">
+                                            <VisualState.Setters>
+                                                <Setter Property="BackgroundColor"
+                                                        Value="{StaticResource White}" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                        <VisualState x:Name="Selected">
+                                            <VisualState.Setters>
+                                                <Setter Property="BackgroundColor"
+                                                        Value="{StaticResource Tertiary}" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateGroupList>
+                            </VisualStateManager.VisualStateGroups>
                         </Border>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
+            <ActivityIndicator IsRunning="{Binding IsBusy}" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

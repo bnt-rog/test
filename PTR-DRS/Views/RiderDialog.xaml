@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mct:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+           xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+           xmlns:mct="clr-namespace:CommunityToolkit.Maui.Views;assembly=CommunityToolkit.Maui"
+           x:Class="PTR_DRS.Views.RiderDialog"
+           Size="300, 500">
+    <VerticalStackLayout Spacing="10" Padding="10">
+        <Button Text="Renners toevoegen" Clicked="CloseDialog" Command="{Binding Path=AddRiderRideCommand}" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" WidthRequest="280" Padding="20" />
+        <ScrollView HeightRequest="400">
+            <CollectionView x:Name="RidersList" 
+                            ItemsSource="{Binding SelectedRiders}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border x:Name="ItemBorder"
+                                Stroke="gray"
+                                StrokeThickness="2"
+                                StrokeShape="RoundRectangle 10"
+                                Padding="20"
+                                WidthRequest="280">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Label Text="{Binding LastName}" 
+                                       Grid.Column="0"/>
+                                <Label Text=" " 
+                                       Grid.Column="1"/>
+                                <Label Text="{Binding FirstName}" 
+                                       Grid.Column="2"/>
+                            </Grid>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroupList>
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualState x:Name="Normal">
+                                            <VisualState.Setters>
+                                                <Setter Property="BackgroundColor"
+                                                        Value="{StaticResource White}" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateGroupList>
+                            </VisualStateManager.VisualStateGroups>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ScrollView>
+    </VerticalStackLayout>
+</mct:Popup>

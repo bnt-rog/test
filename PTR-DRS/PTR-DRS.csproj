@@ -79,6 +79,9 @@
 	  <MauiXaml Update="Views\RidePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\RiderDialog.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\RiderPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

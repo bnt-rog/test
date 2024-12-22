@@ -1,5 +1,4 @@
 ﻿using CommunityToolkit.Maui;
-using Microsoft.Extensions.Logging;
 using PTR_DRS.Repositories;
 using PTR_DRS.ViewModels;
 using PTR_DRS.Views;
@@ -36,6 +35,7 @@ public static class MauiProgram
         builder.Services.AddSingleton<MainPage>();
         builder.Services.AddSingleton<RidePage>();
         builder.Services.AddSingleton<RiderPage>();
+        builder.Services.AddSingleton<RiderDialog>();
         builder.Services.AddSingleton<RankingPage>();
 
         return builder.Build();
